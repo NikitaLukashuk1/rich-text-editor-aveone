@@ -216,7 +216,7 @@ function getSuggestionComponent() {
     filterSuggestionsForMount(props) {
       const mentionText = props.children[0].props.text.substr(1);
       const suggestions = config.getSuggestions();
-      const filteredSuggestions = this.filtereSuggestions({
+      const filteredSuggestions = this.filterSuggestions({
         suggestions,
         mentionText,
       });
