@@ -143,22 +143,9 @@ function getSuggestionComponent() {
     }
 
     onEditorKeyDown = (event) => {
-      const { activeOption } = this.state;
       const newState = {};
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
-        if (activeOption === this.state.filteredSuggestions.length - 1) {
-          newState.activeOption = 0;
-        } else {
-          newState.activeOption = activeOption + 1;
-        }
-      } else if (event.key === "ArrowUp") {
-        if (activeOption <= 0) {
-          newState.activeOption = this.state.filteredSuggestions.length - 1;
-        } else {
-          newState.activeOption = activeOption - 1;
-        }
-      } else if (event.key === "Escape") {
+
+      if (event.key === "Escape") {
         newState.showSuggestions = false;
         SuggestionHandler.close();
       } else if (event.key === "Enter") {
