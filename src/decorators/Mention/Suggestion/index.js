@@ -188,6 +188,9 @@ function getSuggestionComponent() {
           if (!mentionText || mentionText.length === 0) {
             return true;
           }
+          if (!suggestion.value) {
+            return false;
+          }
           if (config.caseSensitive) {
             return suggestion.value.indexOf(mentionText) >= 0;
           }
