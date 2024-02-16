@@ -96,7 +96,7 @@ function getSuggestionComponent() {
 
     state = {
       style: { left: 15 },
-      activeOption: -1,
+      activeOption: 0,
       showSuggestions: true,
       filteredSuggestions: [],
     };
@@ -144,7 +144,6 @@ function getSuggestionComponent() {
 
     onEditorKeyDown = (event) => {
       const newState = {};
-
       if (event.key === "Escape") {
         newState.showSuggestions = false;
         SuggestionHandler.close();
