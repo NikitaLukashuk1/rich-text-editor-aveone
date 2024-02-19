@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import addMention from "../addMention";
-import KeyDownHandler from "../../../event-handler/keyDown";
-import SuggestionHandler from "../../../event-handler/suggestions";
-import "./styles.css";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import addMention from '../addMention';
+import KeyDownHandler from '../../../event-handler/keyDown';
+import SuggestionHandler from '../../../event-handler/suggestions';
+import './styles.css';
 
 class Suggestion {
   constructor(config) {
@@ -40,15 +40,15 @@ class Suggestion {
         this.config;
       const selection = getEditorState().getSelection();
       if (
-        selection.get("anchorKey") === contentBlock.get("key") &&
-        selection.get("anchorKey") === selection.get("focusKey")
+        selection.get('anchorKey') === contentBlock.get('key') &&
+        selection.get('anchorKey') === selection.get('focusKey')
       ) {
         let text = contentBlock.getText();
         text = text.substr(
           0,
-          selection.get("focusOffset") === text.length - 1
+          selection.get('focusOffset') === text.length - 1
             ? text.length
-            : selection.get("focusOffset") + 1
+            : selection.get('focusOffset') + 1
         );
         let index = text.lastIndexOf(separator + trigger);
         let preText = separator + trigger;
@@ -144,25 +144,26 @@ function getSuggestionComponent() {
 
     onEditorKeyDown = (event) => {
       const newState = {};
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         newState.showSuggestions = false;
         SuggestionHandler.close();
-      } else if (event.key === "Enter") {
+      } else if (event.key === 'Enter') {
         this.addMention();
       }
       this.setState((prevState) => ({ ...prevState, ...newState }));
     };
 
     onOptionMouseEnter = (event) => {
-      const index = event.target.getAttribute("data-index");
+      const index = event.target.getAttribute('data-index');
+      console.log(index, 'dsadas');
       this.setState({
-        activeOption: index,
+        activeOption: +index,
       });
     };
 
     onOptionMouseLeave = () => {
       this.setState({
-        activeOption: -1,
+        activeOption: 0,
       });
     };
 
@@ -257,7 +258,7 @@ function getSuggestionComponent() {
           {showSuggestions && (
             <span
               className={classNames(
-                "rdw-suggestion-dropdown",
+                'rdw-suggestion-dropdown',
                 dropdownClassName
               )}
               contentEditable="false"
@@ -274,9 +275,9 @@ function getSuggestionComponent() {
                   onMouseEnter={this.onOptionMouseEnter}
                   onMouseLeave={this.onOptionMouseLeave}
                   className={classNames(
-                    "rdw-suggestion-option",
+                    'rdw-suggestion-option',
                     optionClassName,
-                    { "rdw-suggestion-option-active": index === activeOption }
+                    { 'rdw-suggestion-option-active': index === activeOption }
                   )}
                 >
                   {suggestion.text}
